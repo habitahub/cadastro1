@@ -157,7 +157,7 @@
                                 </p>
                             </div>
                             <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full self-start sm:self-center shrink-0">
-                                Faixa 1: 88,5% da base classificada
+                                Faixa 1: 89% da base classificada
                             </span>
                         </div>
 
@@ -465,9 +465,9 @@
                     data: {
                         labels: [
                             'Faixa 1 (até R$ 3.200)',
-                            'Faixa 2 (3.201 a 5.000)',
-                            'Faixa 3 (5.001 a 9.600)',
-                            'Faixa 4 (9.601 a 13.000)'
+                            'Faixa 2 (R$ 3.201 a R$ 5.000)',
+                            'Faixa 3 (R$ 5.001 a R$ 9.600)',
+                            'Faixa 4 (R$ 9.601 a R$ 13.000)'
                         ],
                         datasets: [{
                             label: 'Número de Famílias',
@@ -493,10 +493,10 @@
                                 formatter: (value) => {
                                     const totalClassificado = 64606;
                                     const percentual = (value / totalClassificado) * 100;
-                                    return `${formatNumber(value)}  •  ${percentual.toLocaleString('pt-BR', {
+                                    return `${formatNumber(value)} (${percentual.toLocaleString('pt-BR', {
                                         minimumFractionDigits: 1,
                                         maximumFractionDigits: 1
-                                    })}%`;
+                                   })}%)`;
                                 }
                             },
                             tooltip: {
