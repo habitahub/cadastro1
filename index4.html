@@ -1,0 +1,107 @@
+<!-- ... existing code ... -->
+        <main class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
+            
+            <!-- Visão Geral de Indicadores -->
+            <section>
+                <h2 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+                    Visão Geral
+                </h2>
+                
+                <!-- Grid de KPIs Responsivo: 2 cartões no topo e Renda Familiar em largura total -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                    
+                    <!-- KPI Total Cadastrados -->
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between items-center text-center">
+                        <div class="w-full flex flex-col items-center">
+                            <p class="text-[11px] sm:text-xs text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-900 mt-2">64.952</p>
+                        </div>
+                        <p class="text-[10px] sm:text-[11px] text-slate-500 mt-3 flex items-center justify-center gap-1">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Base ativa no sistema
+                        </p>
+                    </div>
+                    
+                    <!-- KPI Novos e Atualizados -->
+                    <div class="kpi-card col-span-1 flex flex-col justify-between items-center text-center">
+                        <div class="w-full flex flex-col items-center">
+                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium uppercase tracking-wide">Novos / Atualizados</p>
+                            <p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-800 mt-2">2.432</p>
+                        </div>
+                        <p class="text-[10px] sm:text-[11px] text-brand-600 font-medium mt-3 bg-brand-50 px-2.5 py-1 rounded-md inline-block self-center">
+                            Desde 15/05
+                        </p>
+                    </div>
+                    
+                    <!-- KPI Enquadramento por Renda Familiar (Largura Total da Página) -->
+                    <div class="kpi-card col-span-1 md:col-span-2 flex flex-col justify-between bg-white border-slate-200 p-4 sm:p-5">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div>
+                                <p class="text-xs sm:text-sm text-slate-700 font-bold uppercase tracking-wide">Enquadramento por Renda Familiar</p>
+                                <p class="text-[11px] text-slate-500 font-normal">Distribuição das famílias por faixa salarial</p>
+                            </div>
+                            <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full self-start sm:self-center shrink-0">Faixa 1: 88,5% do total</span>
+                        </div>
+                        <!-- Container do Gráfico de Barras por Faixa de Renda -->
+                        <div class="chart-wrapper my-auto" style="height: 220px;">
+                            <canvas id="rendaChart"></canvas>
+                        </div>
+                        <p class="text-[10px] text-slate-400 text-right mt-2">*Valores em número absoluto de famílias cadastradas</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards de Grupos Específicos -->
+<!-- ... existing code ... -->
+            // 5. Gráfico de Enquadramento por Renda Familiar (Rótulos por extenso e largura total)
+            const ctxRenda = document.getElementById('rendaChart').getContext('2d');
+            new Chart(ctxRenda, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Faixa 1 (até R$ 3.200,00)',
+                        'Faixa 2 (R$ 3.201,00 a R$ 5.000,00)',
+                        'Faixa 3 (R$ 5.001,00 a R$ 9.600,00)',
+                        'Faixa 4 (até R$ 13.000,00)'
+                    ],
+                    datasets: [{
+                        label: 'Número de Famílias',
+                        data: [57493, 5349, 1485, 279],
+                        backgroundColor: ['#10b981', '#0ea5e9', '#6366f1', '#8b5cf6'],
+                        borderRadius: 6,
+                        barPercentage: 0.65
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            display: true,
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 6,
+                            color: '#334155',
+                            font: { weight: '600', size: 11 },
+                            formatter: (value) => formatNumber(value)
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false,
+                            grid: { display: false },
+                            grace: '20%' // Garante que o valor 57.493 não seja cortado na borda direita
+                        },
+                        y: {
+                            grid: { display: false },
+                            border: { display: false },
+                            ticks: { font: { size: 11, weight: '500' }, color: '#475569' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
