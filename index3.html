@@ -117,47 +117,62 @@
                     Visão Geral
                 </h2>
                 
-                <!-- Grid de KPIs Responsivo: 1 coluna no mobile, 3 colunas em tablet/desktop -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+                <!-- Grid de KPIs Responsivo: 1 coluna por cartão em desktop/tablet (grid-cols-1 sm:grid-cols-2 md:grid-cols-3) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                     
                     <!-- KPI Total Cadastrados -->
-                    <div class="kpi-card col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between items-center text-center">
-                        <div class="w-full flex flex-col items-center">
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between">
+                        <div>
                             <p class="text-[11px] sm:text-xs text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
-                            <p class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-900 mt-2">64.952</p>
+                            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-900 mt-2">64.952</p>
                         </div>
-                        <p class="text-[10px] sm:text-[11px] text-slate-500 mt-3 flex items-center justify-center gap-1">
+                        <p class="text-[10px] sm:text-[11px] text-slate-500 mt-3 flex items-center gap-1">
                             <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Base ativa no sistema
                         </p>
                     </div>
                     
                     <!-- KPI Novos e Atualizados -->
-                    <div class="kpi-card col-span-1 flex flex-col justify-between items-center text-center">
-                        <div class="w-full flex flex-col items-center">
-                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium uppercase tracking-wide">Novos / Atualizados</p>
-                            <p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-800 mt-2">2.432</p>
+                    <div class="kpi-card col-span-1 flex flex-col justify-between">
+                        <div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Novos / Atualizados</p>
+                            <p class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">2.432</p>
                         </div>
-                        <p class="text-[10px] sm:text-[11px] text-brand-600 font-medium mt-3 bg-brand-50 px-2.5 py-1 rounded-md inline-block self-center">
+                        <p class="text-[10px] sm:text-[11px] text-brand-600 font-medium mt-2 bg-brand-50 px-2 py-1 rounded-md inline-block self-start">
                             Desde 15/05
                         </p>
                     </div>
                     
-                    <!-- KPI Enquadramento por Renda Familiar (Cartão de 1 coluna ilustrado por Gráfico de Barras) -->
-                    <div class="kpi-card col-span-1 flex flex-col justify-between bg-white border-slate-200">
-                        <div class="flex items-center justify-between mb-1">
-                            <p class="text-[11px] sm:text-xs text-slate-600 font-bold uppercase tracking-wide">Enquadramento por Renda</p>
-                            <span class="text-[10px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Faixa 1: 88,5%</span>
+                    <!-- KPI Enquadramento por Renda Familiar (Ajustado em 1 coluna) -->
+                    <div class="kpi-card col-span-1 sm:col-span-2 md:col-span-1 flex flex-col justify-between bg-white border-slate-200">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wide">Enquadramento por Renda</p>
+                                <span class="text-[10px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Faixa 1: 88,5%</span>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 1 (até R$ 3.200)</span>
+                                    <span class="font-bold text-slate-900 text-xs">57.493</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 2 (3.201 a 5.000)</span>
+                                    <span class="font-bold text-slate-800 text-xs">5.349</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 3 (5.001 a 9.600)</span>
+                                    <span class="font-bold text-slate-800 text-xs">1.485</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 4 (até 13.000)</span>
+                                    <span class="font-bold text-slate-800 text-xs">279</span>
+                                </div>
+                            </div>
                         </div>
-                        <!-- Container do Gráfico de Barras por Faixa de Renda -->
-                        <div class="chart-wrapper-sm my-auto">
-                            <canvas id="rendaChart"></canvas>
-                        </div>
-                        <p class="text-[10px] text-slate-400 text-right mt-1">*Valores em R$ (famílias)</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Cards de Grupos Específicos -->
+            <!-- Cards de Grupos Específicos: 2 colunas em mobile e telas maiores -->
             <section class="grid grid-cols-2 gap-3 sm:gap-4">
                 <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
                     <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
@@ -222,6 +237,17 @@
                         <h3 class="text-xs font-semibold text-slate-600 mb-2">Escolaridade do Titular</h3>
                         <div class="chart-wrapper">
                             <canvas id="escolaridadeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico Enquadramento por Renda Familiar (Barras com Números Visíveis) -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xs font-semibold text-slate-600">Enquadramento por Renda Familiar</h3>
+                            <span class="text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-md">57.493 na Faixa 1</span>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="rendaChart"></canvas>
                         </div>
                     </div>
 
@@ -435,14 +461,12 @@
                 }
             });
 
-            // 5. Gráfico de Enquadramento por Renda Familiar (Integrado ao Cartão de KPI)
+           // 5. Gráfico de Enquadramento por Renda Familiar (Rótulos por extenso e largura total)
             const ctxRenda = document.getElementById('rendaChart').getContext('2d');
             new Chart(ctxRenda, {
                 type: 'bar',
                 data: {
-                    labels: ['F1 (até 3,2k)', 'F2 (3,2k-5k)', 'F3 (5k-9,6k)', 'F4 (até 13k)'],
-                    datasets: [{
-                        labels: [
+                    labels: [
                         'Faixa 1 (até R$ 3.200,00)',
                         'Faixa 2 (R$ 3.201,00 a R$ 5.000,00)',
                         'Faixa 3 (R$ 5.001,00 a R$ 9.600,00)',
@@ -465,9 +489,9 @@
                             display: true,
                             anchor: 'end',
                             align: 'end',
-                            offset: 4,
+                            offset: 6,
                             color: '#334155',
-                            font: { weight: '600', size: 10 },
+                            font: { weight: '600', size: 11 },
                             formatter: (value) => formatNumber(value)
                         }
                     },
@@ -475,12 +499,12 @@
                         x: {
                             display: false,
                             grid: { display: false },
-                            grace: '28%' // Garante espaço suficiente para exibir o número 57.493 sem cortar
+                            grace: '20%' // Garante que o valor 57.493 não seja cortado na borda direita
                         },
                         y: {
                             grid: { display: false },
                             border: { display: false },
-                            ticks: { font: { size: 10, weight: '500' } }
+                            ticks: { font: { size: 11, weight: '500' }, color: '#475569' }
                         }
                     }
                 }
