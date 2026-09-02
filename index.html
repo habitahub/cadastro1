@@ -146,7 +146,7 @@
                     </div>
 
                     <!-- Renda: única ocorrência no dashboard -->
-                    <div class="kpi-card col-span-1 md:col-span-2 flex flex-col justify-between bg-white border-slate-200 p-4 sm:p-6">
+                    <div class="kpi-card col-span-1 md:col-span-2 flex flex-col justify-between bg-white border-slate-200 p-4 sm:p-6 overflow-hidden">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                             <div>
                                 <p class="text-xs sm:text-sm text-slate-700 font-bold uppercase tracking-wide">
@@ -161,16 +161,16 @@
                             </span>
                         </div>
 
-                        <div class="chart-wrapper my-auto" style="height: 230px;">
+                        <div class="chart-wrapper my-auto" style="height: clamp(220px, 34vw, 300px);">
                             <canvas id="rendaChart" aria-label="Distribuição das famílias por faixa de renda"></canvas>
                         </div>
 
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mt-2">
-                            <p class="text-[10px] text-slate-400">
-                                *Valores em número absoluto de famílias cadastradas
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mt-3 text-[10px] sm:text-[11px]">
+                            <p class="text-slate-400">
+                                *Percentuais calculados sobre 64.606 famílias com renda enquadrada.
                             </p>
-                            <p class="text-[10px] text-slate-500 font-medium">
-                                346 famílias sem enquadramento de renda informado
+                            <p class="text-slate-500 font-medium sm:text-right">
+                                346 famílias sem enquadramento de renda informado.
                             </p>
                         </div>
                     </div>
@@ -464,10 +464,10 @@
                     type: 'bar',
                     data: {
                         labels: [
-                            'F - 1 (até R$ 3.200,00)',
-                            'F - 2 (3.201 a  5.000)',
-                            'F - 3 (5.001 a 9.600)',
-                            'F - 4 (até R$ 13.000)'
+                            'Faixa 1 (até R$ 3.200)',
+                            'Faixa 2 (R$ 3.201 a R$ 5.000)',
+                            'Faixa 3 (R$ 5.001 a R$ 9.600)',
+                            'Faixa 4 (R$ 9.601 a R$ 13.000)'
                         ],
                         datasets: [{
                             label: 'Número de Famílias',
@@ -489,13 +489,26 @@
                                 align: 'end',
                                 offset: 6,
                                 color: '#334155',
-                                font: { weight: '600', size: 11 },
-                                formatter: (value) => formatNumber(value)
+                                font: { weight: '600', size: window.innerWidth < 640 ? 9 : 11 },
+                                formatter: (value) => {
+                                    const totalClassificado = 64606;
+                                    const percentual = (value / totalClassificado) * 100;
+                                    return `${formatNumber(value)} (${percentual.toLocaleString('pt-BR', {
+                                        minimumFractionDigits: 1,
+                                        maximumFractionDigits: 1
+                                    })}%)`;
+                                }
                             },
                             tooltip: {
                                 callbacks: {
-                                    label: (context) =>
-                                        `${formatNumber(context.raw)} famílias`
+                                    label: (context) => {
+                                        const totalClassificado = 64606;
+                                        const percentual = (context.raw / totalClassificado) * 100;
+                                        return `${formatNumber(context.raw)} famílias (${percentual.toLocaleString('pt-BR', {
+                                            minimumFractionDigits: 1,
+                                            maximumFractionDigits: 1
+                                        })}%)`;
+                                    }
                                 }
                             }
                         },
@@ -509,7 +522,7 @@
                                 grid: { display: false },
                                 border: { display: false },
                                 ticks: {
-                                    font: { size: 11, weight: '500' },
+                                    font: { size: window.innerWidth < 640 ? 9 : 11, weight: '500' },
                                     color: '#475569'
                                 }
                             }
