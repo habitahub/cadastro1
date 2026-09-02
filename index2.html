@@ -117,66 +117,84 @@
                     Visão Geral
                 </h2>
                 
-                <!-- Grid de KPIs Responsivo: 1 col em mobile, 2/3 em tablet/desktop -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <!-- Grid de KPIs Responsivo: 2 colunas no mobile, 3 colunas em tablet/desktop -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                     
-                    <!-- KPI Total Cadastrados -->
-                    <div class="kpi-card sm:col-span-2 lg:col-span-2 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between">
+                    <!-- KPI Total Cadastrados (Ocupa as 2 colunas no mobile para destaque e 1 coluna a partir de MD) -->
+                    <div class="kpi-card col-span-2 md:col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
-                            <p class="text-3xl sm:text-4xl font-extrabold text-brand-900 mt-2">64.952</p>
+                            <p class="text-[11px] sm:text-xs text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
+                            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-900 mt-2">64.952</p>
                         </div>
-                        <p class="text-[11px] text-slate-500 mt-3 flex items-center gap-1">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Base ativa no sistema municipal
+                        <p class="text-[10px] sm:text-[11px] text-slate-500 mt-3 flex items-center gap-1">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Base ativa no sistema
                         </p>
                     </div>
                     
                     <!-- KPI Novos e Atualizados -->
-                    <div class="kpi-card flex flex-col justify-between">
+                    <div class="kpi-card col-span-1 flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-slate-500 font-medium">Novos / Atualizados</p>
-                            <p class="text-2xl font-bold text-slate-800 mt-1">2.432</p>
+                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Novos / Atualizados</p>
+                            <p class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">2.432</p>
                         </div>
-                        <p class="text-[11px] text-brand-600 font-medium mt-2 bg-brand-50 px-2 py-1 rounded-md inline-block self-start">
+                        <p class="text-[10px] sm:text-[11px] text-brand-600 font-medium mt-2 bg-brand-50 px-2 py-1 rounded-md inline-block self-start">
                             Desde 15/05
                         </p>
                     </div>
                     
-                    <!-- KPI Renda -->
-                    <div class="kpi-card flex flex-col justify-between">
+                    <!-- KPI Enquadramento por Renda Familiar -->
+                    <div class="kpi-card col-span-2 md:col-span-1 flex flex-col justify-between bg-white border-slate-200">
                         <div>
-                            <p class="text-xs text-slate-500 font-medium">Renda até R$ 3.200,00</p>
-                            <p class="text-2xl font-bold text-slate-800 mt-1">57.493</p>
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wide">Enquadramento por Renda</p>
+                                <span class="text-[10px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Faixa 1: 88,5%</span>
+                            </div>
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 1 (até R$ 3.200)</span>
+                                    <span class="font-bold text-slate-900 text-xs">57.493</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 2 (3.201 a 5.000)</span>
+                                    <span class="font-bold text-slate-800 text-xs">5.349</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 3 (5.001 a 9.600)</span>
+                                    <span class="font-bold text-slate-800 text-xs">1.485</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-slate-50 p-1.5 rounded-lg border border-slate-100">
+                                    <span class="text-slate-600 font-medium text-[11px]">Faixa 4 (até 13.000)</span>
+                                    <span class="font-bold text-slate-800 text-xs">279</span>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-[11px] text-emerald-600 font-semibold mt-2 bg-emerald-50 px-2 py-1 rounded-md inline-block self-start">
-                            88,5% do total
-                        </p>
                     </div>
                 </div>
             </section>
 
-            <section class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div class="flex items-center p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                    <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mr-3.5 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Cards de Grupos Específicos: 2 colunas em mobile e telas maiores -->
+            <section class="grid grid-cols-2 gap-3 sm:gap-4">
+                <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
                     <div>
-                        <p class="text-xs text-slate-500 font-medium">Famílias com PCD</p>
-                        <p class="text-lg font-bold text-slate-800">5.540 <span class="text-xs font-normal text-slate-500">(8,5%)</span></p>
+                        <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com PCD</p>
+                        <p class="text-sm sm:text-lg font-bold text-slate-800">5.540 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(8,5%)</span></p>
                     </div>
                 </div>
 
-                <div class="flex items-center p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                    <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 mr-3.5 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
                     <div>
-                        <p class="text-xs text-slate-500 font-medium">Famílias com Idosos</p>
-                        <p class="text-lg font-bold text-slate-800">6.270 <span class="text-xs font-normal text-slate-500">(9,7%)</span></p>
+                        <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com Idosos</p>
+                        <p class="text-sm sm:text-lg font-bold text-slate-800">6.270 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(9,7%)</span></p>
                     </div>
                 </div>
             </section>
@@ -219,6 +237,17 @@
                         <h3 class="text-xs font-semibold text-slate-600 mb-2">Escolaridade do Titular</h3>
                         <div class="chart-wrapper">
                             <canvas id="escolaridadeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico Enquadramento por Renda Familiar -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xs font-semibold text-slate-600">Enquadramento por Renda Familiar</h3>
+                            <span class="text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-md">57.493 na Faixa 1</span>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="rendaChart"></canvas>
                         </div>
                     </div>
 
@@ -419,7 +448,7 @@
                         y: {
                             display: false,
                             grid: { display: false },
-                            grace: '15%' // Espaço no topo para os valores não cortarem
+                            grace: '15%'
                         },
                         x: {
                             grid: { display: false },
@@ -427,6 +456,50 @@
                             ticks: {
                                 font: { size: 11, weight: '500' }
                             }
+                        }
+                    }
+                }
+            });
+
+            // 5. Gráfico de Enquadramento por Renda Familiar (Barra Horizontal com Números Visíveis)
+            const ctxRenda = document.getElementById('rendaChart').getContext('2d');
+            new Chart(ctxRenda, {
+                type: 'bar',
+                data: {
+                    labels: ['Faixa 1 (até R$ 3.200)', 'Faixa 2 (3.201 a 5.000)', 'Faixa 3 (5.001 a 9.600)', 'Faixa 4 (até 13.000)'],
+                    datasets: [{
+                        label: 'Famílias',
+                        data: [57493, 5349, 1485, 279],
+                        backgroundColor: ['#10b981', '#0ea5e9', '#6366f1', '#8b5cf6'],
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            display: true,
+                            anchor: 'end',
+                            align: 'end',
+                            offset: 4,
+                            color: '#475569',
+                            font: { weight: '600', size: 10 },
+                            formatter: (value) => formatNumber(value)
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false,
+                            grid: { display: false },
+                            grace: '20%'
+                        },
+                        y: {
+                            grid: { display: false },
+                            border: { display: false },
+                            ticks: { font: { size: 11, weight: '500' } }
                         }
                     }
                 }
