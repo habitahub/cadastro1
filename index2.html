@@ -117,11 +117,11 @@
                     Visão Geral
                 </h2>
                 
-                <!-- Grid de KPIs Responsivo: 2 colunas no mobile, 3 colunas em tablet/desktop -->
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                <!-- Grid de KPIs Responsivo: 1 coluna por cartão em desktop/tablet (grid-cols-1 sm:grid-cols-2 md:grid-cols-3) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                     
-                    <!-- KPI Total Cadastrados (Ocupa as 2 colunas no mobile para destaque e 1 coluna a partir de MD) -->
-                    <div class="kpi-card col-span-2 md:col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between">
+                    <!-- KPI Total Cadastrados -->
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between">
                         <div>
                             <p class="text-[11px] sm:text-xs text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
                             <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-900 mt-2">64.952</p>
@@ -142,8 +142,8 @@
                         </p>
                     </div>
                     
-                    <!-- KPI Enquadramento por Renda Familiar -->
-                    <div class="kpi-card col-span-2 md:col-span-1 flex flex-col justify-between bg-white border-slate-200">
+                    <!-- KPI Enquadramento por Renda Familiar (Ajustado em 1 coluna) -->
+                    <div class="kpi-card col-span-1 sm:col-span-2 md:col-span-1 flex flex-col justify-between bg-white border-slate-200">
                         <div>
                             <div class="flex items-center justify-between mb-2">
                                 <p class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wide">Enquadramento por Renda</p>
@@ -240,7 +240,7 @@
                         </div>
                     </div>
 
-                    <!-- Gráfico Enquadramento por Renda Familiar -->
+                    <!-- Gráfico Enquadramento por Renda Familiar (Barras com Números Visíveis) -->
                     <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
                         <div class="flex items-center justify-between mb-2">
                             <h3 class="text-xs font-semibold text-slate-600">Enquadramento por Renda Familiar</h3>
@@ -468,7 +468,7 @@
                 data: {
                     labels: ['Faixa 1 (até R$ 3.200)', 'Faixa 2 (3.201 a 5.000)', 'Faixa 3 (5.001 a 9.600)', 'Faixa 4 (até 13.000)'],
                     datasets: [{
-                        label: 'Famílias',
+                        label: 'Número de Famílias',
                         data: [57493, 5349, 1485, 279],
                         backgroundColor: ['#10b981', '#0ea5e9', '#6366f1', '#8b5cf6'],
                         borderRadius: 6,
@@ -485,7 +485,7 @@
                             anchor: 'end',
                             align: 'end',
                             offset: 4,
-                            color: '#475569',
+                            color: '#334155',
                             font: { weight: '600', size: 10 },
                             formatter: (value) => formatNumber(value)
                         }
