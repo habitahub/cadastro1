@@ -3,29 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Municipal de Habitação - Mogi das Cruzes</title>
-    
-    <!-- Meta tags para SEO e redes sociais / GitHub Pages -->
     <meta name="description" content="Dashboard do Cadastro Municipal de Habitação de Mogi das Cruzes - Monitoramento e qualificação da base cadastral.">
     <meta property="og:title" content="Cadastro Municipal de Habitação - Mogi das Cruzes">
     <meta property="og:description" content="Painel de monitoramento e qualificação da base cadastral habitacional.">
     <meta property="og:type" content="website">
+    <title>Cadastro Municipal de Habitação - Mogi das Cruzes</title>
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Dependências via CDN: compatível com GitHub Pages -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chart.js DataLabels Plugin CDN para números visíveis sobre as barras -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    
-    <!-- Configuração de tema do Tailwind -->
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
                     },
                     colors: {
                         brand: {
@@ -34,7 +28,7 @@
                             500: '#0ea5e9',
                             600: '#0284c7',
                             700: '#0369a1',
-                            900: '#0c4a6e',
+                            900: '#0c4a6e'
                         }
                     }
                 }
@@ -42,10 +36,9 @@
         }
     </script>
 
-    <!-- Fonte Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -57,7 +50,6 @@
             padding: 0;
         }
 
-        /* Contentor dos gráficos com altura dinâmica */
         .chart-wrapper {
             position: relative;
             width: 100%;
@@ -70,7 +62,6 @@
             height: 180px;
         }
 
-        /* Cartões KPI interativos */
         .kpi-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -78,17 +69,18 @@
             padding: 1.25rem;
             transition: all 0.2s ease-in-out;
         }
-        
+
         .kpi-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
+
 <body class="p-2 sm:p-4 md:p-6 lg:p-8 flex justify-center items-center">
 
-    <div class="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-slate-200/60 transition-all duration-300">
-        
+    <div class="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-slate-200/60">
+
         <!-- Cabeçalho -->
         <header class="bg-brand-900 text-white p-5 sm:p-6 md:p-8 rounded-t-2xl md:rounded-t-3xl flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
@@ -96,11 +88,14 @@
                     Prefeitura de Mogi das Cruzes
                 </span>
                 <h1 class="text-xl sm:text-2xl font-bold leading-tight">Cadastro Municipal de Habitação</h1>
-                <p class="text-brand-100 text-xs sm:text-sm opacity-90 mt-1">Monitoramento e qualificação da base cadastral</p>
+                <p class="text-brand-100 text-xs sm:text-sm opacity-90 mt-1">
+                    Monitoramento e qualificação da base cadastral
+                </p>
             </div>
+
             <div class="self-start md:self-center shrink-0">
                 <span class="inline-flex items-center text-xs bg-brand-800 border border-brand-700 text-brand-100 px-3 py-1.5 rounded-xl font-medium shadow-sm">
-                    <svg class="w-3.5 h-3.5 mr-1.5 text-brand-500" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-3.5 h-3.5 mr-1.5 text-brand-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                         <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                     </svg>
                     Atualização: 02/09/2026
@@ -109,126 +104,166 @@
         </header>
 
         <main class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
-            
-            <!-- Visão Geral de Indicadores -->
+
+            <!-- Visão Geral -->
             <section>
                 <h2 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-brand-500"></span>
                     Visão Geral
                 </h2>
-                
-                <!-- Grid de KPIs Responsivo: 2 colunas no mobile, 3 colunas em tablet/desktop -->
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                    
-                    <!-- KPI Total Cadastrados (Ocupa as 2 colunas no mobile para destaque e 1 coluna a partir de MD) -->
-                    <div class="kpi-card col-span-2 md:col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between">
-                        <div>
-                            <p class="text-[11px] sm:text-xs text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
-                            <p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-900 mt-2">64.952</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+
+                    <!-- KPI Total -->
+                    <div class="kpi-card bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between items-center text-center p-6">
+                        <div class="w-full flex flex-col items-center justify-center">
+                            <p class="text-xs sm:text-sm text-brand-600 font-semibold uppercase tracking-wide">
+                                Total de Famílias Cadastradas
+                            </p>
+                            <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-brand-900 mt-3 tracking-tight">
+                                64.952
+                            </p>
                         </div>
-                        <p class="text-[10px] sm:text-[11px] text-slate-500 mt-3 flex items-center gap-1">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Base ativa no sistema
+                        <p class="text-xs text-slate-500 mt-4 flex items-center justify-center gap-1.5">
+                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                            Base ativa no sistema
                         </p>
                     </div>
-                    
-                    <!-- KPI Novos e Atualizados -->
-                    <div class="kpi-card col-span-1 flex flex-col justify-between">
-                        <div>
-                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Novos / Atualizados</p>
-                            <p class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">2.432</p>
+
+                    <!-- KPI Novos/Atualizados -->
+                    <div class="kpi-card flex flex-col justify-between items-center text-center p-6">
+                        <div class="w-full flex flex-col items-center justify-center">
+                            <p class="text-xs sm:text-sm text-slate-500 font-semibold uppercase tracking-wide">
+                                Novos / Atualizados
+                            </p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 mt-3 tracking-tight">
+                                2.432
+                            </p>
                         </div>
-                        <p class="text-[10px] sm:text-[11px] text-brand-600 font-medium mt-2 bg-brand-50 px-2 py-1 rounded-md inline-block self-start">
-                            Desde 15/05
+                        <p class="text-xs text-brand-600 font-medium mt-4 bg-brand-50 px-3 py-1 rounded-md">
+                            Desde 15/05/2026
                         </p>
                     </div>
-                    
-                    <!-- KPI Renda -->
-                    <div class="kpi-card col-span-1 flex flex-col justify-between">
-                        <div>
-                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Renda até R$ 3.200,00</p>
-                            <p class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">57.493</p>
+
+                    <!-- Renda: única ocorrência no dashboard -->
+                    <div class="kpi-card col-span-1 md:col-span-2 flex flex-col justify-between bg-white border-slate-200 p-4 sm:p-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                            <div>
+                                <p class="text-xs sm:text-sm text-slate-700 font-bold uppercase tracking-wide">
+                                    Enquadramento por Renda Familiar
+                                </p>
+                                <p class="text-xs text-slate-500 font-normal">
+                                    Distribuição das famílias por faixa salarial
+                                </p>
+                            </div>
+                            <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full self-start sm:self-center shrink-0">
+                                Faixa 1: 88,5% da base classificada
+                            </span>
                         </div>
-                        <p class="text-[10px] sm:text-[11px] text-emerald-600 font-semibold mt-2 bg-emerald-50 px-2 py-1 rounded-md inline-block self-start">
-                            88,5% do total
-                        </p>
+
+                        <div class="chart-wrapper my-auto" style="height: 230px;">
+                            <canvas id="rendaChart" aria-label="Distribuição das famílias por faixa de renda"></canvas>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mt-2">
+                            <p class="text-[10px] text-slate-400">
+                                *Valores em número absoluto de famílias cadastradas
+                            </p>
+                            <p class="text-[10px] text-slate-500 font-medium">
+                                346 famílias sem enquadramento de renda informado
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Cards de Grupos Específicos: 2 colunas em mobile e telas maiores -->
-            <section class="grid grid-cols-2 gap-3 sm:gap-4">
-                <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com PCD</p>
-                        <p class="text-sm sm:text-lg font-bold text-slate-800">5.540 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(8,5%)</span></p>
-                    </div>
-                </div>
+            <!-- Grupos específicos -->
+            <section>
+                <h2 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+                    Grupos Específicos
+                </h2>
 
-                <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                <div class="grid grid-cols-2 gap-3 sm:gap-4">
+
+                    <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com PCD</p>
+                            <p class="text-sm sm:text-lg font-bold text-slate-800">
+                                5.540 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(8,5%)</span>
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com Idosos</p>
-                        <p class="text-sm sm:text-lg font-bold text-slate-800">6.270 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(9,7%)</span></p>
+
+                    <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com Idosos</p>
+                            <p class="text-sm sm:text-lg font-bold text-slate-800">
+                                6.270 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(9,7%)</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Perfil dos titulares -->
             <section class="space-y-6">
                 <h2 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-brand-500"></span>
-                    Perfil Demográfico
+                    Perfil dos Titulares
                 </h2>
 
-                <!-- Grid de Gráficos: 1 Coluna em Mobile, 2 Colunas em Desktop/Tablet -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    
-                    <!-- Linha 1: Sexo e Estado Civil agrupados num cartão responsivo em desktop -->
+
+                    <!-- Sexo e Estado Civil -->
                     <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <h3 class="text-xs font-semibold text-slate-600 text-center mb-3">Sexo do Titular</h3>
                             <div class="chart-wrapper-sm">
-                                <canvas id="sexoChart"></canvas>
+                                <canvas id="sexoChart" aria-label="Sexo dos titulares"></canvas>
                             </div>
                         </div>
+
                         <div>
                             <h3 class="text-xs font-semibold text-slate-600 text-center mb-3">Estado Civil</h3>
                             <div class="chart-wrapper-sm">
-                                <canvas id="estadoCivilChart"></canvas>
+                                <canvas id="estadoCivilChart" aria-label="Estado civil dos titulares"></canvas>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Gráfico Raça / Cor (Com números visíveis nas barras) -->
+                    <!-- Raça/Cor -->
                     <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
                         <h3 class="text-xs font-semibold text-slate-600 mb-2">Raça / Cor</h3>
                         <div class="chart-wrapper">
-                            <canvas id="racaChart"></canvas>
+                            <canvas id="racaChart" aria-label="Raça ou cor dos titulares"></canvas>
                         </div>
                     </div>
 
-                    <!-- Gráfico Escolaridade (Com números visíveis nas barras) -->
+                    <!-- Escolaridade -->
                     <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
                         <h3 class="text-xs font-semibold text-slate-600 mb-2">Escolaridade do Titular</h3>
                         <div class="chart-wrapper">
-                            <canvas id="escolaridadeChart"></canvas>
+                            <canvas id="escolaridadeChart" aria-label="Escolaridade dos titulares"></canvas>
                         </div>
                     </div>
 
                 </div>
             </section>
-
         </main>
 
-        <footer class="bg-slate-50 border-t border-slate-200/80 p-5 text-center mt-auto">
+        <!-- Rodapé -->
+        <footer class="bg-slate-50 border-t border-slate-200/80 p-5 text-center">
             <p class="text-xs text-slate-500 font-medium leading-relaxed">
                 Secretaria da Habitação Social e Regularização Fundiária — Mogi das Cruzes
             </p>
@@ -237,26 +272,23 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Regista o plugin de rótulos de dados (DataLabels) do Chart.js
             Chart.register(ChartDataLabels);
 
-            // Configurações Globais de Estilo e Tipografia
             Chart.defaults.font.family = "'Inter', sans-serif";
             Chart.defaults.color = '#64748b';
             Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.9)';
             Chart.defaults.plugins.tooltip.padding = 10;
             Chart.defaults.plugins.tooltip.cornerRadius = 8;
 
-            // Função auxiliar para formatar números no padrão brasileiro (ex: 27.692)
-            const formatNumber = (value) => new Intl.NumberFormat('pt-BR').format(value);
+            const formatNumber = (value) =>
+                new Intl.NumberFormat('pt-BR').format(value);
 
-            // Options Base
             const commonOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                     datalabels: {
-                        display: false // Desativado por padrão, ativado especificamente nas barras
+                        display: false
                     },
                     legend: {
                         position: 'bottom',
@@ -267,171 +299,224 @@
                         }
                     }
                 },
-                layout: { padding: { top: 10, bottom: 0, left: 5, right: 15 } }
+                layout: {
+                    padding: { top: 10, bottom: 0, left: 5, right: 15 }
+                }
             };
 
-            // 1. Gráfico de Sexo (Doughnut)
-            const ctxSexo = document.getElementById('sexoChart').getContext('2d');
-            new Chart(ctxSexo, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Feminino', 'Masculino'],
-                    datasets: [{
-                        data: [45521, 19430],
-                        backgroundColor: ['#ec4899', '#3b82f6'],
-                        borderWidth: 0,
-                        hoverOffset: 4
-                    }]
-                },
-                options: {
-                    ...commonOptions,
-                    cutout: '62%',
-                    plugins: {
-                        ...commonOptions.plugins,
-                        datalabels: {
-                            display: true,
-                            color: '#ffffff',
-                            font: { weight: 'bold', size: 10 },
-                            formatter: (value) => formatNumber(value)
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                boxWidth: 8,
-                                usePointStyle: true,
-                                font: { size: 10 },
-                                padding: 8
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 2. Gráfico de Estado Civil (Pie)
-            const ctxEstadoCivil = document.getElementById('estadoCivilChart').getContext('2d');
-            new Chart(ctxEstadoCivil, {
-                type: 'pie',
-                data: {
-                    labels: ['Solt/Div/Desq/Viúvo', 'Casado/União Estável'],
-                    datasets: [{
-                        data: [46833, 18116],
-                        backgroundColor: ['#10b981', '#f59e0b'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    ...commonOptions,
-                    plugins: {
-                        ...commonOptions.plugins,
-                        datalabels: {
-                            display: true,
-                            color: '#ffffff',
-                            font: { weight: 'bold', size: 10 },
-                            formatter: (value) => formatNumber(value)
-                        },
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                boxWidth: 8,
-                                usePointStyle: true,
-                                font: { size: 10 },
-                                padding: 8
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 3. Gráfico de Raça/Cor (Barra Horizontal) - NÚMEROS VISÍVEIS
-            const ctxRaca = document.getElementById('racaChart').getContext('2d');
-            new Chart(ctxRaca, {
-                type: 'bar',
-                data: {
-                    labels: ['Branca', 'Parda', 'Preta', 'Amarela', 'Não resp.', 'Indígena'],
-                    datasets: [{
-                        label: 'Quantidade',
-                        data: [27692, 26382, 9351, 895, 472, 158],
-                        backgroundColor: '#8b5cf6',
-                        borderRadius: 6,
-                        barPercentage: 0.65
-                    }]
-                },
-                options: {
-                    ...commonOptions,
-                    indexAxis: 'y',
-                    plugins: {
-                        legend: { display: false },
-                        datalabels: {
-                            display: true,
-                            anchor: 'end',
-                            align: 'end',
-                            offset: 4,
-                            color: '#475569',
-                            font: { weight: '600', size: 10 },
-                            formatter: (value) => formatNumber(value)
-                        }
+            // 1. Sexo
+            const sexoEl = document.getElementById('sexoChart');
+            if (sexoEl) {
+                new Chart(sexoEl.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Feminino', 'Masculino'],
+                        data: [],
+                        datasets: [{
+                            data: [45521, 19430],
+                            backgroundColor: ['#ec4899', '#3b82f6'],
+                            borderWidth: 0,
+                            hoverOffset: 4
+                        }]
                     },
-                    scales: {
-                        x: {
-                            display: false,
-                            grid: { display: false },
-                            grace: '18%' // Garante espaço para o número no final da barra
-                        },
-                        y: {
-                            grid: { display: false },
-                            border: { display: false },
-                            ticks: { font: { size: 11, weight: '500' } }
-                        }
-                    }
-                }
-            });
-
-            // 4. Gráfico de Escolaridade (Barra Vertical) - NÚMEROS VISÍVEIS
-            const ctxEscolaridade = document.getElementById('escolaridadeChart').getContext('2d');
-            new Chart(ctxEscolaridade, {
-                type: 'bar',
-                data: {
-                    labels: ['Médio', 'Fundamental', 'Superior', 'Analfabeto', 'Outros'], 
-                    datasets: [{
-                        label: 'Total',
-                        data: [41587, 11931, 10802, 618, 13], 
-                        backgroundColor: '#0ea5e9',
-                        borderRadius: 6,
-                        barPercentage: 0.55
-                    }]
-                },
-                options: {
-                    ...commonOptions,
-                    plugins: {
-                        legend: { display: false },
-                        datalabels: {
-                            display: true,
-                            anchor: 'end',
-                            align: 'top',
-                            offset: 2,
-                            color: '#0369a1',
-                            font: { weight: '600', size: 10 },
-                            formatter: (value) => formatNumber(value)
-                        }
-                    },
-                    scales: {
-                        y: {
-                            display: false,
-                            grid: { display: false },
-                            grace: '15%' // Espaço no topo para os valores não cortarem
-                        },
-                        x: {
-                            grid: { display: false },
-                            border: { display: false },
-                            ticks: {
-                                font: { size: 11, weight: '500' }
+                    options: {
+                        ...commonOptions,
+                        cutout: '62%',
+                        plugins: {
+                            ...commonOptions.plugins,
+                            datalabels: {
+                                display: true,
+                                color: '#ffffff',
+                                font: { weight: 'bold', size: 10 },
+                                formatter: (value) => formatNumber(value)
                             }
                         }
                     }
-                }
-            });
+                });
+            }
+
+            // 2. Estado civil
+            const estadoCivilEl = document.getElementById('estadoCivilChart');
+            if (estadoCivilEl) {
+                new Chart(estadoCivilEl.getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: ['Solt/Div/Desq/Viúvo', 'Casado/União Estável'],
+                        datasets: [{
+                            data: [46833, 18116],
+                            backgroundColor: ['#10b981', '#f59e0b'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        ...commonOptions,
+                        plugins: {
+                            ...commonOptions.plugins,
+                            datalabels: {
+                                display: true,
+                                color: '#ffffff',
+                                font: { weight: 'bold', size: 10 },
+                                formatter: (value) => formatNumber(value)
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 3. Raça/Cor
+            const racaEl = document.getElementById('racaChart');
+            if (racaEl) {
+                new Chart(racaEl.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Branca', 'Parda', 'Preta', 'Amarela', 'Não resp.', 'Indígena'],
+                        datasets: [{
+                            label: 'Quantidade',
+                            data: [27692, 26382, 9351, 895, 472, 158],
+                            backgroundColor: '#8b5cf6',
+                            borderRadius: 6,
+                            barPercentage: 0.65
+                        }]
+                    },
+                    options: {
+                        ...commonOptions,
+                        indexAxis: 'y',
+                        plugins: {
+                            ...commonOptions.plugins,
+                            legend: { display: false },
+                            datalabels: {
+                                display: true,
+                                anchor: 'end',
+                                align: 'end',
+                                offset: 4,
+                                color: '#475569',
+                                font: { weight: '600', size: 10 },
+                                formatter: (value) => formatNumber(value)
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false,
+                                grid: { display: false },
+                                grace: '18%'
+                            },
+                            y: {
+                                grid: { display: false },
+                                border: { display: false },
+                                ticks: { font: { size: 11, weight: '500' } }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 4. Escolaridade
+            const escolaridadeEl = document.getElementById('escolaridadeChart');
+            if (escolaridadeEl) {
+                new Chart(escolaridadeEl.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Médio', 'Fundamental', 'Superior', 'Analfabeto', 'Outros'],
+                        datasets: [{
+                            label: 'Total',
+                            data: [41587, 11931, 10802, 618, 13],
+                            backgroundColor: '#0ea5e9',
+                            borderRadius: 6,
+                            barPercentage: 0.55
+                        }]
+                    },
+                    options: {
+                        ...commonOptions,
+                        plugins: {
+                            ...commonOptions.plugins,
+                            legend: { display: false },
+                            datalabels: {
+                                display: true,
+                                anchor: 'end',
+                                align: 'top',
+                                offset: 2,
+                                color: '#0369a1',
+                                font: { weight: '600', size: 10 },
+                                formatter: (value) => formatNumber(value)
+                            }
+                        },
+                        scales: {
+                            y: {
+                                display: false,
+                                grid: { display: false },
+                                grace: '15%'
+                            },
+                            x: {
+                                grid: { display: false },
+                                border: { display: false },
+                                ticks: { font: { size: 11, weight: '500' } }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 5. Renda — uma única instância no dashboard.
+            // Os 346 cadastros sem enquadramento são representados separadamente.
+            const rendaEl = document.getElementById('rendaChart');
+            if (rendaEl) {
+                new Chart(rendaEl.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            'F - 1 (até R$ 3.200,00)',
+                            'F - 2 (3.201 a  5.000)',
+                            'F - 3 (5.001 a 9.600)',
+                            'F - 4 (até R$ 13.000)'
+                        ],
+                        datasets: [{
+                            label: 'Número de Famílias',
+                            data: [57493, 5349, 1485, 279],
+                            backgroundColor: ['#10b981', '#0ea5e9', '#6366f1', '#8b5cf6'],
+                            borderRadius: 6,
+                            barPercentage: 0.65
+                        }]
+                    },
+                    options: {
+                        ...commonOptions,
+                        indexAxis: 'y',
+                        plugins: {
+                            ...commonOptions.plugins,
+                            legend: { display: false },
+                            datalabels: {
+                                display: true,
+                                anchor: 'end',
+                                align: 'end',
+                                offset: 6,
+                                color: '#334155',
+                                font: { weight: '600', size: 11 },
+                                formatter: (value) => formatNumber(value)
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) =>
+                                        `${formatNumber(context.raw)} famílias`
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false,
+                                grid: { display: false },
+                                grace: '20%'
+                            },
+                            y: {
+                                grid: { display: false },
+                                border: { display: false },
+                                ticks: {
+                                    font: { size: 11, weight: '500' },
+                                    color: '#475569'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
         });
     </script>
 </body>
