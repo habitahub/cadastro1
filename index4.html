@@ -216,7 +216,7 @@
                         <div class="chart-wrapper my-auto" style="height: 230px;">
                             <canvas id="rendaChart"></canvas>
                         </div>
-                        <p class="text-[10px] text-slate-400 text-right mt-2">*Valores em número absoluto de famílias cadastradas</p>
+                        <p class="text-[10px] text-slate-400 text-right mt-2">*346 famílias não declararam renda</p>
                     </div>
                 </div>
             </section>
@@ -468,8 +468,7 @@
                 new Chart(rendaEl.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: [
-                       ['Faixa 1', '(até R$ 3.200)'],
+                               ['Faixa 1', '(até R$ 3.200)'],
       			       ['Faixa 2', '(R$ 3.201 a R$ 5.000)'],
         		       ['Faixa 3', '(R$ 5.001 a R$ 9.600)'],
         		       ['Faixa 4', '(R$ 9.601 a R$ 13.000)']
