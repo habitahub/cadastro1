@@ -463,78 +463,189 @@
 
             // 5. Renda — uma única instância no dashboard.
             // Os 346 cadastros sem enquadramento são representados separadamente.
-            const rendaEl = document.getElementById('rendaChart');
+            const rendaEl =
+                document.getElementById('rendaChart');
+
             if (rendaEl) {
-                new Chart(rendaEl.getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                               ['Faixa 1', '(até R$ 3.200)'],
-      			       ['Faixa 2', '(R$ 3.201 a R$ 5.000)'],
-        		       ['Faixa 3', '(R$ 5.001 a R$ 9.600)'],
-        		       ['Faixa 4', '(R$ 9.601 a R$ 13.000)']
-                        ],
-                        datasets: [{
-                            label: 'Número de Famílias',
-                            data: [57493, 5349, 1485, 279],
-                            backgroundColor: ['#10b981', '#0ea5e9', '#6366f1', '#8b5cf6'],
-                            borderRadius: 6,
-                            barPercentage: 0.65
-                        }]
-                    },
-                    options: {
-                        ...commonOptions,
-                        indexAxis: 'y',
-                        plugins: {
-                            ...commonOptions.plugins,
-                            legend: { display: false },
-                            datalabels: {
-                                display: true,
-                                anchor: 'end',
-                                align: 'end',
-                                offset: 6,
-                                color: '#334155',
-                                font: { weight: '600', size: window.innerWidth < 640 ? 9 : 11 },
-                                formatter: (value) => {
-                                    const totalClassificado = 64606;
-                                    const percentual = (value / totalClassificado) * 100;
-                                    return `${formatNumber(value)} (${percentual.toLocaleString('pt-BR', {
-                                        minimumFractionDigits: 1,
-                                        maximumFractionDigits: 1
-                                    })}%)`;
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: (context) => {
+
+                new Chart(
+                    rendaEl.getContext('2d'),
+                    {
+
+                        type: 'bar',
+
+                        data: {
+
+                            // IMPORTANTE:
+                            // Cada array interno representa duas linhas
+                            // no label do eixo Y.
+
+                            labels: [
+                                [
+                                    'Faixa 1',
+                                    '(até R$ 3.200)'
+                                ],
+
+                                [
+                                    'Faixa 2',
+                                    '(R$ 3.201 a R$ 5.000)'
+                                ],
+
+                                [
+                                    'Faixa 3',
+                                    '(R$ 5.001 a R$ 9.600)'
+                                ],
+
+                                [
+                                    'Faixa 4',
+                                    '(R$ 9.601 a R$ 13.000)'
+                                ]
+                            ],
+
+                            datasets: [{
+
+                                label: 'Número de Famílias',
+
+                                data: [
+                                    57493,
+                                    5349,
+                                    1485,
+                                    279
+                                ],
+
+                                backgroundColor: [
+                                    '#10b981',
+                                    '#0ea5e9',
+                                    '#6366f1',
+                                    '#8b5cf6'
+                                ],
+
+                                borderRadius: 6,
+
+                                barPercentage: 0.65
+                            }]
+                        },
+
+                        options: {
+
+                            ...commonOptions,
+
+                            indexAxis: 'y',
+
+                            plugins: {
+
+                                ...commonOptions.plugins,
+
+                                legend: {
+                                    display: false
+                                },
+
+                                datalabels: {
+
+                                    display: true,
+
+                                    anchor: 'end',
+                                    align: 'end',
+                                    offset: 6,
+
+                                    color: '#334155',
+
+                                    font: {
+                                        weight: '600',
+                                        size: window.innerWidth < 640
+                                            ? 9
+                                            : 11
+                                    },
+
+                                    formatter: (value) => {
+
                                         const totalClassificado = 64606;
-                                        const percentual = (context.raw / totalClassificado) * 100;
-                                        return `${formatNumber(context.raw)} famílias (${percentual.toLocaleString('pt-BR', {
-                                            minimumFractionDigits: 1,
-                                            maximumFractionDigits: 1
-                                        })}%)`;
+
+                                        const percentual =
+                                            (value / totalClassificado) * 100;
+
+                                        return `${formatNumber(value)} (${percentual.toLocaleString(
+                                            'pt-BR',
+                                            {
+                                                minimumFractionDigits: 1,
+                                                maximumFractionDigits: 1
+                                            }
+                                        )}%)`;
+                                    }
+                                },
+
+                                tooltip: {
+
+                                    callbacks: {
+
+                                        label: (context) => {
+
+                                            const totalClassificado = 64606;
+
+                                            const percentual =
+                                                (context.raw / totalClassificado) * 100;
+
+                                            return `${formatNumber(context.raw)} famílias (${percentual.toLocaleString(
+                                                'pt-BR',
+                                                {
+                                                    minimumFractionDigits: 1,
+                                                    maximumFractionDigits: 1
+                                                }
+                                            )}%)`;
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                display: false,
-                                grid: { display: false },
-                                grace: '20%'
                             },
-                            y: {
-                                grid: { display: false },
-                                border: { display: false },
-                                ticks: {
-                                    font: { size: window.innerWidth < 640 ? 9 : 11, weight: '500' },
-                                    color: '#475569'
+
+                            scales: {
+
+                                x: {
+
+                                    display: false,
+
+                                    grid: {
+                                        display: false
+                                    },
+
+                                    grace: '20%'
+                                },
+
+                                y: {
+
+                                    grid: {
+                                        display: false
+                                    },
+
+                                    border: {
+                                        display: false
+                                    },
+
+                                    ticks: {
+
+                                        padding: 8,
+
+                                        font: {
+                                            size: window.innerWidth < 640
+                                                ? 9
+                                                : 11,
+
+                                            weight: '500'
+                                        },
+
+                                        color: '#475569'
+                                    }
                                 }
                             }
                         }
                     }
-                });
+                );
             }
+
         });
     </script>
+
 </body>
 </html>
+O que foi corrigido
+
+1. Gráfico de Renda — erro que quebrava todos os
