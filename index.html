@@ -82,136 +82,141 @@
     <div class="w-full max-w-md md:max-w-4xl lg:max-w-6xl mx-auto bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-slate-200/60">
 
         <!-- Cabeçalho -->
-        <header class="bg-brand-900 text-white p-5 sm:p-6 md:p-8 rounded-t-2xl md:rounded-t-3xl flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-                <span class="inline-block text-[11px] font-semibold bg-brand-700 text-brand-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2">
-                    Prefeitura de Mogi das Cruzes
-                </span>
-                <h1 class="text-xl sm:text-2xl font-bold leading-tight">Cadastro Municipal de Habitação</h1>
-                <p class="text-brand-100 text-xs sm:text-sm opacity-90 mt-1">
-                    Monitoramento e qualificação da base cadastral
-                </p>
+        <header class="bg-brand-900 text-white p-5 rounded-t-3xl shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold leading-tight mb-1">Cadastro Municipal de Habitação</h1>
+                    <p class="text-brand-100 text-xs sm:text-sm opacity-90">Monitoramento e qualificação da base cadastral</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-[10px] sm:text-xs bg-brand-800 text-brand-100 border border-brand-700 px-2.5 py-1 rounded-full uppercase tracking-wider font-medium">
+                        Atualização: 02/09/2026
+                    </span>
+                </div>
             </div>
-
-            <div class="self-start md:self-center shrink-0">
-                <span class="inline-flex items-center text-xs bg-brand-800 border border-brand-700 text-brand-100 px-3 py-1.5 rounded-xl font-medium shadow-sm">
-                    <svg class="w-3.5 h-3.5 mr-1.5 text-brand-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-                    </svg>
-                    Atualização: 02/09/2026
-                </span>
+            
+            <!-- Faixa Rápida de KPIs no Cabeçalho -->
+            <div class="mt-4 pt-3 border-t border-brand-800/80 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-center text-xs">
+                <div class="bg-brand-800/50 p-2 rounded-lg border border-brand-700/50">
+                    <p class="text-[9px] sm:text-[10px] text-brand-200 uppercase font-medium">Total Cadastrados</p>
+                    <p class="font-black text-sm sm:text-base text-white mt-0.5">64.952</p>
+                </div>
+                <div class="bg-brand-800/50 p-2 rounded-lg border border-brand-700/50">
+                    <p class="text-[9px] sm:text-[10px] text-brand-200 uppercase font-medium">Novos / Atualiz.</p>
+                    <p class="font-black text-sm sm:text-base text-emerald-300 mt-0.5">2.432</p>
+                </div>
+                <div class="bg-brand-800/50 p-2 rounded-lg border border-brand-700/50">
+                    <p class="text-[9px] sm:text-[10px] text-brand-200 uppercase font-medium">Renda até R$ 3.200</p>
+                    <p class="font-black text-sm sm:text-base text-teal-300 mt-0.5">57.493</p>
+                </div>
+                <div class="bg-brand-800/50 p-2 rounded-lg border border-brand-700/50">
+                    <p class="text-[9px] sm:text-[10px] text-brand-200 uppercase font-medium">Resp. Feminino</p>
+                    <p class="font-black text-sm sm:text-base text-pink-300 mt-0.5">45.521</p>
+                </div>
+                <div class="bg-brand-800/50 p-2 rounded-lg border border-brand-700/50">
+                    <p class="text-[9px] sm:text-[10px] text-brand-200 uppercase font-medium">Famílias c/ Idosos</p>
+                    <p class="font-black text-sm sm:text-base text-sky-300 mt-0.5">6.270</p>
+                </div>
+                <div class="bg-brand-800/50 p-2 rounded-lg border border-brand-700/50">
+                    <p class="text-[9px] sm:text-[10px] text-brand-200 uppercase font-medium">Famílias c/ PCD</p>
+                    <p class="font-black text-sm sm:text-base text-amber-300 mt-0.5">5.540</p>
+                </div>
             </div>
         </header>
 
-        <main class="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
-
-            <!-- Visão Geral -->
+        <!-- Conteúdo com Scroll -->
+        <div class="scrollable-content p-4 sm:p-6 space-y-6">
+            
+            <!-- Visão Geral de Indicadores -->
             <section>
                 <h2 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-brand-500"></span>
                     Visão Geral
                 </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-
-                    <!-- KPI Total -->
-                    <div class="kpi-card bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between items-center text-center p-6">
+                
+                <!-- Grid de KPIs Responsivo -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                    
+                    <!-- KPI Total Cadastrados -->
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-brand-50 to-white border-brand-100 flex flex-col justify-between items-center text-center p-6">
                         <div class="w-full flex flex-col items-center justify-center">
-                            <p class="text-xs sm:text-sm text-brand-600 font-semibold uppercase tracking-wide">
-                                Total de Famílias Cadastradas
-                            </p>
-                            <p class="text-5xl sm:text-6xl lg:text-7xl font-black text-brand-900 mt-3 tracking-tight">
-                                64.952
-                            </p>
+                            <p class="text-xs sm:text-sm text-brand-600 font-semibold uppercase tracking-wide">Total de Famílias Cadastradas</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-800 mt-3 tracking-tight">64.952</p>
                         </div>
                         <p class="text-xs text-slate-500 mt-4 flex items-center justify-center gap-1.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
-                            Base ativa no sistema
+                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span> Total de inscritos
                         </p>
                     </div>
-
-                    <!-- KPI Novos/Atualizados -->
-                    <div class="kpi-card flex flex-col justify-between items-center text-center p-6">
+                    
+                    <!-- KPI Novos e Atualizados -->
+                    <div class="kpi-card col-span-1 flex flex-col justify-between items-center text-center p-6">
                         <div class="w-full flex flex-col items-center justify-center">
-                            <p class="text-xs sm:text-sm text-slate-500 font-semibold uppercase tracking-wide">
-                                Novos / Atualizados
-                            </p>
-                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 mt-3 tracking-tight">
-                                2.432
-                            </p>
+                            <p class="text-xs sm:text-sm text-slate-500 font-semibold uppercase tracking-wide">Novos / Atualizados</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 mt-3 tracking-tight">2.432</p>
                         </div>
-                        <p class="text-xs text-brand-600 font-medium mt-4 bg-brand-50 px-3 py-1 rounded-md">
-                            Desde 15/05/2026
+                        <p class="text-xs text-brand-600 font-medium mt-4 bg-brand-50 px-3 py-1 rounded-md inline-block self-center">
+                            Desde 15/05
                         </p>
                     </div>
 
-                    <!-- Renda: única ocorrência no dashboard -->
-                    <div class="kpi-card col-span-1 md:col-span-2 flex flex-col justify-between bg-white border-slate-200 p-4 sm:p-6 overflow-hidden">
+                    <!-- KPI Famílias com renda até R$ 3.200,00 -->
+                    <div class="kpi-card col-span-1 flex flex-col justify-between items-center text-center p-6">
+                        <div class="w-full flex flex-col items-center justify-center">
+                            <p class="text-xs sm:text-sm text-slate-500 font-semibold uppercase tracking-wide">Renda Familiar até R$ 3.200,00</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 mt-3 tracking-tight">57.493</p>
+                        </div>
+                        <p class="text-xs text-brand-600 font-medium mt-4 bg-brand-50 px-3 py-1 rounded-md inline-block self-center">
+                            Faixa 1
+                        </p>
+                    </div>
+
+                    <!-- KPI Responsáveis do Sexo Feminino -->
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-pink-50/60 to-white border-pink-100 flex flex-col justify-between items-center text-center p-6">
+                        <div class="w-full flex flex-col items-center justify-center">
+                            <p class="text-xs sm:text-sm text-pink-700 font-semibold uppercase tracking-wide">Responsáveis Sexo Feminino</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-pink-600 mt-3 tracking-tight">45.521</p>
+                        </div>
+                        <p class="text-xs text-pink-700 font-medium mt-4 bg-pink-100/70 px-3 py-1 rounded-md inline-block self-center">
+                            70,1% dos titulares
+                        </p>
+                    </div>
+
+                    <!-- KPI Famílias com Idosos -->
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-sky-50/60 to-white border-sky-100 flex flex-col justify-between items-center text-center p-6">
+                        <div class="w-full flex flex-col items-center justify-center">
+                            <p class="text-xs sm:text-sm text-sky-700 font-semibold uppercase tracking-wide">Famílias com Idosos</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-sky-600 mt-3 tracking-tight">6.270</p>
+                        </div>
+                        <p class="text-xs text-sky-700 font-medium mt-4 bg-sky-100/70 px-3 py-1 rounded-md inline-block self-center">
+                            9,6% da base
+                        </p>
+                    </div>
+
+                    <!-- KPI Famílias com PCD -->
+                    <div class="kpi-card col-span-1 bg-gradient-to-br from-sky-50/60 to-white border-sky-100 flex flex-col justify-between items-center text-center p-6">
+                        <div class="w-full flex flex-col items-center justify-center">
+                            <p class="text-xs sm:text-sm text-amber-700 font-semibold uppercase tracking-wide">Famílias com PCD</p>
+                            <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-amber-600 mt-3 tracking-tight">5.540</p>
+                        </div>
+                        <p class="text-xs text-amber-700 font-medium mt-4 bg-amber-100/70 px-3 py-1 rounded-md inline-block self-center">
+                            8,5% da base
+                        </p>
+                    </div>
+                    
+                    <!-- KPI Enquadramento por Renda Familiar (Largura Total da Página) -->
+                    <div class="kpi-card col-span-1 sm:col-span-2 lg:col-span-3 flex flex-col justify-between bg-white border-slate-200 p-4 sm:p-6">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                             <div>
-                                <p class="text-xs sm:text-sm text-slate-700 font-bold uppercase tracking-wide">
-                                    Enquadramento por Renda Familiar
-                                </p>
-                                <p class="text-xs text-slate-500 font-normal">
-                                    Distribuição das famílias por faixa salarial
-                                </p>
+                                <p class="text-xs sm:text-sm text-slate-700 font-bold uppercase tracking-wide">Enquadramento por Renda Familiar</p>
+                                <p class="text-xs text-slate-500 font-normal">Distribuição das famílias por faixa salarial</p>
                             </div>
-                            <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full self-start sm:self-center shrink-0">
-                                Faixa 1: 88,5% da base classificada
-                            </span>
+                            <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full self-start sm:self-center shrink-0">Faixa 1: 89% do total</span>
                         </div>
-
-                        <div class="chart-wrapper my-auto" style="height: clamp(220px, 34vw, 300px);">
-                            <canvas id="rendaChart" aria-label="Distribuição das famílias por faixa de renda"></canvas>
+                        <!-- Container do Gráfico de Barras por Faixa de Renda -->
+                        <div class="chart-wrapper my-auto" style="height: 230px;">
+                            <canvas id="rendaChart"></canvas>
                         </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 mt-3 text-[10px] sm:text-[11px]">
-                            <p class="text-slate-400">
-                                *Percentuais calculados sobre 64.606 famílias com renda enquadrada.
-                            </p>
-                            <p class="text-slate-500 font-medium sm:text-right">
-                                346 famílias sem enquadramento de renda informado.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Grupos específicos -->
-            <section>
-                <h2 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-brand-500"></span>
-                    Grupos Específicos
-                </h2>
-
-                <div class="grid grid-cols-2 gap-3 sm:gap-4">
-
-                    <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com PCD</p>
-                            <p class="text-sm sm:text-lg font-bold text-slate-800">
-                                5.540 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(8,5%)</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center p-3 sm:p-4 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 mr-2.5 sm:mr-3.5 shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Famílias com Idosos</p>
-                            <p class="text-sm sm:text-lg font-bold text-slate-800">
-                                6.270 <span class="text-[10px] sm:text-xs font-normal text-slate-500">(9,7%)</span>
-                            </p>
-                        </div>
+                        <p class="text-[10px] text-slate-400 text-right mt-2">*346 famílias não declararam renda</p>
                     </div>
                 </div>
             </section>
@@ -458,79 +463,186 @@
 
             // 5. Renda — uma única instância no dashboard.
             // Os 346 cadastros sem enquadramento são representados separadamente.
-            const rendaEl = document.getElementById('rendaChart');
+            const rendaEl =
+                document.getElementById('rendaChart');
+
             if (rendaEl) {
-                new Chart(rendaEl.getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: [
-                            'Faixa 1 (até R$ 3.200)',
-                            'Faixa 2 (R$ 3.201 a R$ 5.000)',
-                            'Faixa 3 (R$ 5.001 a R$ 9.600)',
-                            'Faixa 4 (R$ 9.601 a R$ 13.000)'
-                        ],
-                        datasets: [{
-                            label: 'Número de Famílias',
-                            data: [57493, 5349, 1485, 279],
-                            backgroundColor: ['#10b981', '#0ea5e9', '#6366f1', '#8b5cf6'],
-                            borderRadius: 6,
-                            barPercentage: 0.65
-                        }]
-                    },
-                    options: {
-                        ...commonOptions,
-                        indexAxis: 'y',
-                        plugins: {
-                            ...commonOptions.plugins,
-                            legend: { display: false },
-                            datalabels: {
-                                display: true,
-                                anchor: 'end',
-                                align: 'end',
-                                offset: 6,
-                                color: '#334155',
-                                font: { weight: '600', size: window.innerWidth < 640 ? 9 : 11 },
-                                formatter: (value) => {
-                                    const totalClassificado = 64606;
-                                    const percentual = (value / totalClassificado) * 100;
-                                    return `${formatNumber(value)} (${percentual.toLocaleString('pt-BR', {
-                                        minimumFractionDigits: 1,
-                                        maximumFractionDigits: 1
-                                    })}%)`;
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: (context) => {
+
+                new Chart(
+                    rendaEl.getContext('2d'),
+                    {
+
+                        type: 'bar',
+
+                        data: {
+
+                            // IMPORTANTE:
+                            // Cada array interno representa duas linhas
+                            // no label do eixo Y.
+
+                            labels: [
+                                [
+                                    'Faixa 1',
+                                    '(até R$ 3.200)'
+                                ],
+
+                                [
+                                    'Faixa 2',
+                                    '(R$ 3.201 a R$ 5.000)'
+                                ],
+
+                                [
+                                    'Faixa 3',
+                                    '(R$ 5.001 a R$ 9.600)'
+                                ],
+
+                                [
+                                    'Faixa 4',
+                                    '(R$ 9.601 a R$ 13.000)'
+                                ]
+                            ],
+
+                            datasets: [{
+
+                                label: 'Número de Famílias',
+
+                                data: [
+                                    57493,
+                                    5349,
+                                    1485,
+                                    279
+                                ],
+
+                                backgroundColor: [
+                                    '#10b981',
+                                    '#0ea5e9',
+                                    '#6366f1',
+                                    '#8b5cf6'
+                                ],
+
+                                borderRadius: 6,
+
+                                barPercentage: 0.65
+                            }]
+                        },
+
+                        options: {
+
+                            ...commonOptions,
+
+                            indexAxis: 'y',
+
+                            plugins: {
+
+                                ...commonOptions.plugins,
+
+                                legend: {
+                                    display: false
+                                },
+
+                                datalabels: {
+
+                                    display: true,
+
+                                    anchor: 'end',
+                                    align: 'end',
+                                    offset: 6,
+
+                                    color: '#334155',
+
+                                    font: {
+                                        weight: '600',
+                                        size: window.innerWidth < 640
+                                            ? 9
+                                            : 11
+                                    },
+
+                                    formatter: (value) => {
+
                                         const totalClassificado = 64606;
-                                        const percentual = (context.raw / totalClassificado) * 100;
-                                        return `${formatNumber(context.raw)} famílias (${percentual.toLocaleString('pt-BR', {
-                                            minimumFractionDigits: 1,
-                                            maximumFractionDigits: 1
-                                        })}%)`;
+
+                                        const percentual =
+                                            (value / totalClassificado) * 100;
+
+                                        return `${formatNumber(value)} (${percentual.toLocaleString(
+                                            'pt-BR',
+                                            {
+                                                minimumFractionDigits: 1,
+                                                maximumFractionDigits: 1
+                                            }
+                                        )}%)`;
+                                    }
+                                },
+
+                                tooltip: {
+
+                                    callbacks: {
+
+                                        label: (context) => {
+
+                                            const totalClassificado = 64606;
+
+                                            const percentual =
+                                                (context.raw / totalClassificado) * 100;
+
+                                            return `${formatNumber(context.raw)} famílias (${percentual.toLocaleString(
+                                                'pt-BR',
+                                                {
+                                                    minimumFractionDigits: 1,
+                                                    maximumFractionDigits: 1
+                                                }
+                                            )}%)`;
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                display: false,
-                                grid: { display: false },
-                                grace: '20%'
                             },
-                            y: {
-                                grid: { display: false },
-                                border: { display: false },
-                                ticks: {
-                                    font: { size: window.innerWidth < 640 ? 9 : 11, weight: '500' },
-                                    color: '#475569'
+
+                            scales: {
+
+                                x: {
+
+                                    display: false,
+
+                                    grid: {
+                                        display: false
+                                    },
+
+                                    grace: '20%'
+                                },
+
+                                y: {
+
+                                    grid: {
+                                        display: false
+                                    },
+
+                                    border: {
+                                        display: false
+                                    },
+
+                                    ticks: {
+
+                                        padding: 8,
+
+                                        font: {
+                                            size: window.innerWidth < 640
+                                                ? 9
+                                                : 11,
+
+                                            weight: '500'
+                                        },
+
+                                        color: '#475569'
+                                    }
                                 }
                             }
                         }
                     }
-                });
+                );
             }
+
         });
     </script>
+
 </body>
 </html>
